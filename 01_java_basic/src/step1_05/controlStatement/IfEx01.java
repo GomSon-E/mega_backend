@@ -34,12 +34,10 @@ public class IfEx01 {
 		}
 		
 		int number = 9;
-		if (number % 2 == 0) {
-			System.out.println("짝수");
-		}
-		if (number % 2 == 1) {
-			System.out.println("홀수");
-		}
+		// if문에 속한 명령어가 1줄이면 {}를 생략할 수 있다.
+		if (number % 2 == 0)  System.out.println("짝수");
+		if (number % 2 == 1)  System.out.println("홀수");
+		
 		
 	}
 }
