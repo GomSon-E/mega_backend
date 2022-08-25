@@ -1,5 +1,10 @@
 package step1_06.loop;
 
+import java.util.Random;
+
+//2022.08.24 21:28 - 21:32
+
+
 /*
  * # 랜덤학생
  * 
@@ -17,6 +22,33 @@ public class LoopEx24_풀이 {
 
 	public static void main(String[] args) {
 		
+Random rd = new Random();
+		
+		int sum = 0;
+		int cnt = 0;
+		int no1 = 0;
+		int no1Grade = 0;
+		
+		for (int i = 1; i <= 10; i++) {
+			int grade = rd.nextInt(100) + 1;
+			
+			sum += grade;
+			
+			if (grade >= 60) {
+				cnt++;
+			}
+			
+			if (grade > no1Grade) {
+				no1 = i;
+				no1Grade = grade;
+			}
+		}
+		
+		System.out.println("전교생의 총점은 " + sum + "점 입니다");
+		System.out.println("전교생의 평균은 " + sum/10.0 + "점 입니다");
+		System.out.println("합격자 수는 " + cnt + "명 입니다");
+		System.out.println("1등 학생의 번호는 " + no1 + "번 입니다");
+		System.out.println("1등 학생의 점수는 " + no1Grade + "점 입니다");
 
 	}
 

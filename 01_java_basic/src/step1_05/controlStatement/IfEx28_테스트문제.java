@@ -35,7 +35,14 @@ public class IfEx28_테스트문제 {
 		int comRight = rd.nextInt(3);
 		
 		System.out.println("최종적으로 낼 것을 정해주세요 : 왼손(0) 오른손(1)");
-		int meFinal = sc.nextInt();
+		int meSelection = sc.nextInt();
+		int meFinal = 0;
+		if (meSelection == 0) {
+			meFinal = meLeft;
+		}
+//		else (meSelection == 1) {
+//			meFinal = meRight;
+//		}
 		
 		
 
