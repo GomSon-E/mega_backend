@@ -1,5 +1,8 @@
 package step1_06.loop;
 
+// 완료
+
+import java.util.Random;
 import java.util.Scanner;
 
 /*
@@ -20,11 +23,12 @@ public class LoopEx16_테스트문제 {
 
 	public static void main(String[] args) {
 		
-		Scanner scan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
+		Random rd = new Random();
 		
 		// 목적지(destination)
-		int desX = 0;
-		int desY = 0;
+		int desX = rd.nextInt(21) - 10;
+		int desY = rd.nextInt(21) - 10;
 		
 		// 현재 위치
 		int x = 0;
@@ -38,6 +42,9 @@ public class LoopEx16_테스트문제 {
 		
 		// 요금
 		int fee = 0;
+		
+		// 이동한 칸 수
+		int move = 0;
 		
 		boolean isRun = true;
 		
@@ -55,13 +62,37 @@ public class LoopEx16_테스트문제 {
 			System.out.println("3.이동하기");
 			
 			System.out.print("메뉴 선택 : ");
-			int selectMenu = scan.nextInt();
+			int selectMenu = sc.nextInt();
 			
-			if (selectMenu == 1) {}
-			else if (selectMenu == 2) {}
-			else if (selectMenu == 3) {}
+			if (selectMenu == 1) {
+				System.out.print("이동할 방향을 설정해주세요 동(1) 서(2) 남(3) 북(4) : ");
+				dir = sc.nextInt();
+			}
+			else if (selectMenu == 2) {
+				System.out.print("이동할 속도를 설정해주세요 1 ~ 3 : ");
+				speed = sc.nextInt();
+			}
+			else if (selectMenu == 3) {
+				if (dir == 1) { x += speed; }
+				else if (dir == 2) { x -= speed; }
+				else if (dir == 3) { y -= speed; }
+				else if (dir == 4) { y += speed; }
+				
+				move += speed;
+			}
+			
+			if (move % 2 == 0) { fee = 50 * (move / 2); }
+			else { fee = 50 * ((move + 1) / 2);	}
+			
+			if (desX == x && desY == y) {
+				isRun = false;
+				System.out.println("목적지에 도착했습니다. 운행을 종료합니다.");
+				System.out.println("요   금 : " + fee);
+			}
 			
 		}
+		
+		sc.close();
 
 	}
 

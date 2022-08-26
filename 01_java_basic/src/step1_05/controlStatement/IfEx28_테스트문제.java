@@ -1,5 +1,7 @@
 package step1_05.controlStatement;
 
+// 완료
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,6 +30,7 @@ public class IfEx28_테스트문제 {
 		
 		System.out.println("왼손에 낼 것을 입력해주세요 : 가위(0) 바위(1) 보(2)");
 		int meLeft = sc.nextInt();
+		
 		System.out.println("오른손에 낼 것을 입력해주세요 : 가위(0) 바위(1) 보(2)");
 		int meRight = sc.nextInt();
 		
@@ -40,11 +43,32 @@ public class IfEx28_테스트문제 {
 		if (meSelection == 0) {
 			meFinal = meLeft;
 		}
-//		else (meSelection == 1) {
-//			meFinal = meRight;
-//		}
+		else if (meSelection == 1) {
+			meFinal = meRight;
+		}
 		
+		int comSelection = rd.nextInt(1);
+		int comFinal = 0;
+		if (comSelection == 0) {
+			comFinal = comLeft;
+		}
+		else if (comSelection == 1) {
+			comFinal = comRight;
+		}
 		
+		// 판정 가위(0) 바위(1) 보(2)
+		System.out.println("유저의 최종결정 : " + meFinal);
+		System.out.println("컴퓨터의 최종결정 : " + comFinal);
+		
+		if (meFinal == comFinal) {
+			System.out.println("비겼습니다.");
+		}
+		else if (meFinal - comFinal == 1 || meFinal - comFinal == -2) {
+			System.out.println("이겼습니다.");
+		}
+		else {
+			System.out.println("졌습니다");
+		}
 
 	}
 
