@@ -1,5 +1,7 @@
 package step1_06.loop;
 
+// 완료
+
 import java.util.Scanner;
 
 /*
@@ -20,12 +22,25 @@ public class LoopEx32_테스트문제 {
 
 	public static void main(String[] args) {
 		
-		Scanner scan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("Enter Number ? ");
-		int getNumber = scan.nextInt();
+		int getNumber = sc.nextInt();
 		
-		scan.close();
+		for (int i = getNumber; ; i++) {
+			int cnt = 0;
+			for (int j = 1; j <= i; j++) {
+				if (i % j == 0) {
+					cnt++;
+				}
+			}
+			if (cnt == 2) { 
+				System.out.println(getNumber + "보다 큰 첫번째 소수는 " + i); 
+				break;
+			}
+		}
+		
+		sc.close();
 		
 	}
 

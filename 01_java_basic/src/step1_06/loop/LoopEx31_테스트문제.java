@@ -1,5 +1,7 @@
 package step1_06.loop;
 
+// 완료
+
 /*
  
  	(for문)
@@ -24,7 +26,53 @@ package step1_06.loop;
 public class LoopEx31_테스트문제 {
 
 	public static void main(String[] args) {
-
+		
+		// 문제 1
+		
+		for (int i = 0; ; i++) {
+			int num = i * 9;
+			int numTen = num / 10;
+			if (numTen == 6) {
+				System.out.println("문제 1 답: " + num);
+				break;
+			}
+		}
+		
+		// 문제 2
+		
+		for (int i = 150; i > 0; i--) {
+			if (i % 8 == 5) { System.out.println("문제 2 답: " + i); break; }
+		}
+		
+		// 문제 3
+		
+		int cnt3 = 0;
+		
+		for (int i = 50; i <= 100; i++) {
+			if (i % 9 == 0) { cnt3++; }
+		}
+		
+		System.out.println("문제 3 답: " + cnt3 + "개");
+		
+		// 문제 4
+		
+		for (int i = 999; i > 99; i--) {
+			if (i % 28 == 0) { System.out.println("문제 4 답: " + i); break; }
+		}
+		
+		// 문제 5
+		int cnt5 = 0;
+		
+		for (int i = 0; ; i++) {
+			if (i % 8 == 0) {
+				System.out.println("문제 5 답: " + i);
+				cnt5++;
+			}
+			if (cnt5 == 5) {
+				break;
+			}
+		}
+		
 	}
 
 }
