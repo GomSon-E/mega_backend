@@ -1,5 +1,9 @@
 package step2_01.array;
 
+import java.util.Arrays;
+
+//2022.08.30 19:12 - 19:16
+
 /*
  * # 4의 배수만 저장
  * 
@@ -15,6 +19,21 @@ public class ArrayEx13_풀이 {
 		int[] arr = {44, 11, 29, 24, 76};
 		int[] temp = null;
 		
+		int cnt = 0;
+		
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] % 4 == 0) { cnt ++; }
+		}
+		
+		temp = new int[cnt];
+		
+		int index = 0;
+		
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] % 4 == 0) { temp[index] = arr[i]; index++; }
+		}
+		
+		System.out.println(Arrays.toString(temp));
 	}
 	
 }

@@ -1,5 +1,7 @@
 package step1_06.loop;
 
+// 완료
+
 import java.util.Scanner;
 
 /*
@@ -33,13 +35,33 @@ public class LoopEx33_테스트문제 {
 
 	public static void main(String[] args) {
 		
-		Scanner scan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
         
 		System.out.print("key값 입력 : ");
-		int key = scan.nextInt();
+		int key = sc.nextInt();
+		
+		int index = 1;
+		int answer = 0;
+		boolean isFirst = true;
  
+		while (true) {
+			
+			System.out.print("입력 : ");
+			int num = sc.nextInt();
+			
+			if (num == -1) { break; }
+			
+			if (num == 7 && isFirst) {
+				answer = index;
+				isFirst = false;
+			}
+			
+			index ++;
+		}
+		
+		System.out.println("결과 : key값 "+ key +"가 첫번재 나타난 것은 "+ answer +"번째 이다.");
 
-		scan.close();
+		sc.close();
 	}
 
 }

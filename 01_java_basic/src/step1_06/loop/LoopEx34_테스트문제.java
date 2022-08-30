@@ -1,5 +1,7 @@
 package step1_06.loop;
 
+// 완료
+
 /*
  * 
  *  # 삼각형 출력하기 (for문)
@@ -19,7 +21,18 @@ package step1_06.loop;
 public class LoopEx34_테스트문제 {
 
 	public static void main(String[] args) {
-
+		
+		for (int i = 1; i < 10; i++) {
+			
+			for (int j = 0; j < (9 - i); j++) {
+				System.out.print(" ");
+			}
+			
+			for (int j = 1; j <= i; j++) {
+				System.out.print(i + " ");
+			}
+			System.out.println();
+		}
 
 	}
 

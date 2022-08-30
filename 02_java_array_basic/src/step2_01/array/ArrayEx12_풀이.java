@@ -1,6 +1,6 @@
 package step2_01.array;
 
-// 완료
+//2022.08.29 21:36 - 20:40
 
 import java.util.Arrays;
 import java.util.Scanner;
