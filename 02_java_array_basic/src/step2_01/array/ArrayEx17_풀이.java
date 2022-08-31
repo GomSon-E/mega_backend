@@ -2,8 +2,7 @@ package step2_01.array;
 
 import java.util.Scanner;
 
-//2022.08.30 21:35 - 21:42
-//미완료
+//2022.08.30 21:35 - 21:42 + 2022.08.31 19:20 - 19:27
 
 /* 
  * # 틱택토
@@ -13,9 +12,9 @@ import java.util.Scanner;
  * 3. 1p가 입력한 부분은 화면에 O표시 , 2p가 입력한 부분은 화면에 X표시
  * 
  * === 틱택토 ===
- * [X][X][O]
- * [ ][O][ ]
- * [ ][ ][ ]
+ * [X][X][O] 0 1 2
+ * [ ][O][ ] 3 4 5
+ * [ ][ ][ ] 6 7 8
  * [p1]인덱스 입력 : 6
  * === 틱택토 ===
  * [X][X][O]
@@ -66,10 +65,24 @@ public class ArrayEx17_풀이 {
 				game[sel] = 2;
 			}
 			
-			
+			// 0 1 2 / 3 4 5 / 6 7 8 / 0 3 6 / 1 4 7 / 2 5 8 / 0 4 8 / 2 4 6
+			if ( 
+				(game[0] != 0 && game[0] == game[1] && game[1] == game[2]) || 
+				(game[3] != 0 && game[3] == game[4] && game[4] == game[5]) || 
+				(game[6] != 0 && game[6] == game[7] && game[7] == game[8]) || 
+				(game[0] != 0 && game[0] == game[3] && game[3] == game[6]) || 
+				(game[1] != 0 && game[1] == game[4] && game[4] == game[7]) || 
+				(game[2] != 0 && game[2] == game[5] && game[5] == game[8]) || 
+				(game[0] != 0 && game[0] == game[4] && game[4] == game[8]) || 
+				(game[2] != 0 && game[2] == game[4] && game[4] == game[6])	) {
+				break;
+			}
 			
 			turn++;
 		}
+		
+		if (turn % 2 == 0) { System.out.println("[p1]승리"); }
+		else { System.out.println("[p2]승리"); }  
 		
 	}
 		
