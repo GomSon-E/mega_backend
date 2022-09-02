@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-//2022.09.01 21:34 - 21:41 + 미완료
+//2022.09.01 21:34 - 21:41 + 2022.09.02 19:02 - 19:05
 
 /*
  * # 숫자 야구 게임
@@ -34,13 +34,13 @@ public class ArrayEx29_풀이 {
 		int[] com = {1,7,3};
 		int[] me  = new int[3];
 		
-		int strike = 0;
-		int ball = 0;
-		
 		System.out.print("정답 : ");
 		System.out.println(Arrays.toString(com));
 		
 		while (true) {
+			int strike = 0;
+			int ball = 0;
+			
 			for (int i = 0; i < me.length; i++) {
 				System.out.print(i + 1 + "번째 숫자를 입력해주세요 : ");
 				me[i] = sc.nextInt();
@@ -65,7 +65,18 @@ public class ArrayEx29_풀이 {
 			}
 			
 			if (strike > 0 && ball > 0) {
-				System.out.println();
+				System.out.println(strike + "s " + ball + "b");
+			}
+			else if (strike > 0 && ball <= 0) {
+				System.out.println(strike + "s");
+			}
+			else if (strike <= 0 && ball > 0) {
+				System.out.println(ball + "b");
+			}
+			
+			if (strike == 3) {
+				System.out.println("게임 종료");
+				break;
 			}
 			
 		}
