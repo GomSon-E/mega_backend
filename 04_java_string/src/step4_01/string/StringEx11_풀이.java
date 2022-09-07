@@ -1,6 +1,6 @@
 package step4_01.string;
 
-//2022.09.06 20:40 - 20:50 + 2022.09.06 21:## - 21:##
+//2022.09.06 20:40 - 20:50 + 2022.09.07 19:01 - 19:04
 
 import java.util.Scanner;
 
@@ -56,9 +56,15 @@ public class StringEx11_풀이 {
 				itemCount++;
 			}
 			else if (sel == 2) {
-				
+				for (int i = 0; i < itemCount; i++) {
+					System.out.println("[" + i + "] " + items[i][0]);
+				}
+				System.out.print("카테고리 인덱스 입력 : ");
+				int index = sc.nextInt();
 				System.out.print("추가할 아이템 입력 : ");
 				String item = sc.next();
+				
+				items[index][1] += item + "/";
 			}
 			else if (sel == 3) {
 				for (int i = 0; i < itemCount; i++) {

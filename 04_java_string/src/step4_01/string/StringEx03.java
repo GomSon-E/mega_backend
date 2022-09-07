@@ -91,7 +91,16 @@ public class StringEx03 {
 		for (int i = 0; i < temp.length; i++) {
 			System.out.print(temp[i] + " ");
 		}
-		System.out.println();
+		System.out.println("\n");
+		
+		// [6] : 문자열 비교 : compareTo()
+		str1 = "ac";
+		str2 = "dc";
+		str3 = "ac";
+		
+		System.out.println(str1.compareTo(str2)); // 왼쪽값(기준값)이 작을 경우, 음수가 반환된다.
+		System.out.println(str2.compareTo(str1)); // 왼쪽값(기준값)이 클 경우, 양수가 반환된다.
+		System.out.println(str1.compareTo(str3)); // 양쪽값이 같을 경우, 0이 반환된다.
 		
 	}
 
