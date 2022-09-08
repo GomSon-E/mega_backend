@@ -20,16 +20,22 @@ public class ExceptionEx01 {
 		
 		try {
 			int[] testArr = new int[5];
-//			System.out.println(testArr[999]);
+			System.out.println(testArr[999]);
 //			System.out.println(testArr[0] / 0);
 			System.out.println(testArr[0]);
 			
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("배열 범위 초과 에러 catch");
+			System.out.println("배열 범위 초과 에러 catch");			
+			e.printStackTrace();
+			
 		} catch (ArithmeticException e) {
 			System.out.println("연산 에러 catch");
+			e.printStackTrace();
+			
 		} catch (Exception e) {
 			System.out.println("모든 에러 catch");
+			e.printStackTrace();
+			
 		}
 		
 		
