@@ -3,7 +3,7 @@ package step6_01.classObject;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//2022.09.13 21:17 - 21:40 + 미완료
+//2022.09.13 21:17 - 21:40 + 2022.09.14 19:00 - 19:05
 
 /*
  * # 숫자이동[3단계] : 클래스 + 변수
@@ -73,17 +73,33 @@ public class ClassEx08_풀이 {
 				else {
 					e.game[prevIdx] = 0;
 					e.game[playerIdx] = 2;
-				}
-				
-				
-				
-									
+				}									
 			}
 			
 			else if (command == 2) {
 				
+				prevIdx = playerIdx;
+				playerIdx++;
 				
+				if (playerIdx > 8) {
+					playerIdx = 0;
+				}
 				
+				if (e.game[playerIdx] == 1) {
+					System.out.println("격파 (3)");
+					int attack = sc.nextInt();
+					if (attack == 3) {
+						e.game[prevIdx] = 0;
+						e.game[playerIdx] = 2;
+					}
+					else {
+						playerIdx--;
+					}
+				}
+				else {
+					e.game[prevIdx] = 0;
+					e.game[playerIdx] = 2;
+				}	
 			}
 			
 		}
