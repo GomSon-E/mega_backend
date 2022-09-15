@@ -18,7 +18,7 @@ import java.io.IOException;
 
 class MethodType {
 	
-	// 입력값은 없고 결과값도 없는 경우
+	// 입력값이 없고 결과값도 없는 경우
 	void type00 () {
 		
 		System.out.println("==============");
@@ -44,6 +44,20 @@ class MethodType {
 		
 	}
 	
+	// 입력값은 없고 결과값은 있는 경우
+	double type01() {
+		return 3.141592;
+	}
+	
+	// 입력값이 있고 결과값도 있는 경우
+	int type11 (String birth) {
+		
+		String temp = birth.substring(0, 4);
+		int age = 2022 - Integer.parseInt(temp) + 1;
+		
+		return age;
+	}
+	
 }
 
 public class MethodEx02 {
@@ -54,6 +68,7 @@ public class MethodEx02 {
 		
 		// 입력값은 없고 결과값도 없는 경우
 		methodType.type00();
+		
 		
 		// 입력값은 있고 결과값은 없는 경우
 		methodType.type10("팀 버너스 리.txt");
@@ -67,6 +82,23 @@ public class MethodEx02 {
 		// ERROR : 파라미터의 개수가 일치해야만 한다.
 		// methodType.type10("파일1.txt", "파일2.txt");
 		// methodType.type10("파일1.txt", "파일2.txt", "파일3.txt");
+		
+		
+		// 입력값은 없고 결과값은 있는 경우
+		System.out.println("PI : " + methodType.type01());
+		double pi = methodType.type01();
+		System.out.println("PI : " + pi);
+		
+		// 입력값은 있고 결과값은 없는 경우
+		System.out.println(methodType.type11("20000809") + "살");
+		
+		int getAge = methodType.type11("19931122");
+		System.out.println(getAge + "살");
+		
+		if (methodType.type11("20220101") == 1) {
+			System.out.println("1살");
+		}
+		
 		
 	}
 
