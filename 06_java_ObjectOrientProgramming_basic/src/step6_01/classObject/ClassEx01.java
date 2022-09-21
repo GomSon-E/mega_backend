@@ -31,9 +31,9 @@ package step6_01.classObject;
  * 
  * 		[형태]
  * 
- * 	    클래스명 변수명 = new 클래스명();
- *   Ex)  Ex01     e    =  new Ex01();
- *    	  Random ran    =  new Random();
+ *      클래스명 변수명 = new 클래스명();
+ *  Ex) Ex01     e      =  new Ex01();
+ *    	Random ran      =  new Random();
  * 
  * */
 
