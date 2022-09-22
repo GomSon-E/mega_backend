@@ -69,16 +69,17 @@ class MyList {
 			int[] temp = arr;
 			arr = new int[elementCnt - 1];
 			
-			for (int i = 0; i < temp.length; i++) {
+			for (int i = 0; i < temp.length - 1; i++) {
 				if (i < index) {
 					arr[i] = temp[i];
 				}
 				else {
-					
+					arr[i] = temp[i + 1];
 				}
 			}
+			temp = null;
 		}
-		
+		elementCnt--;
 	}
 	
 	int size() {
@@ -100,7 +101,7 @@ class MyList {
 	
 }
 
-public class ClassArrayEx13_도전_미완료 {
+public class ClassArrayEx13_도전 {
 
 	public static void main(String[] args) {
 		
@@ -119,6 +120,32 @@ public class ClassArrayEx13_도전_미완료 {
 		list.add(0, 9);
 		// 출력하기
 		list.print();
+
+		// (index로)삭제하기
+		list.remove(3);
+		list.print();
+
+		// 길이 구하기
+		int elementCnt = list.size();
+		System.out.println("elementCnt = " + elementCnt);
+
+		// (index로)값 꺼내오기
+		System.out.print("[");
+		for (int i = 0; i < elementCnt; i++) {
+			System.out.print(list.get(i));
+			if (i != elementCnt - 1) {
+				System.out.print(", ");
+			}
+		}
+		System.out.println("]");
+
+		// 특정 위치의 값 수정하기
+		list.set(3, 5);
+		list.print();
+
+		// 모든 데이터를 제거하기
+		list.clear();
+		System.out.println(list.size());
 		
 	}
 	
