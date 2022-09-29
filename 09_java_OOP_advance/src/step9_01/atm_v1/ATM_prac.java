@@ -2,11 +2,11 @@ package step9_01.atm_v1;
 import java.util.Random;
 import java.util.Scanner;
 
-public class ATM_practice {
+public class ATM_prac {
 	
 	Scanner scan = new Scanner(System.in);
 	Random ran   = new Random();
-	UserManager_practice userManager = new UserManager_practice();
+	UserManager_prac userManager = new UserManager_prac();
 	int identifier = -1;
 	
 	void printMainMenu() {
@@ -79,20 +79,20 @@ public class ATM_practice {
 			
 			if (sel == 1) {
 				if (userManager.user[identifier].accCount == 0) {
-					userManager.user[identifier].acc = new Account_practice[1];
+					userManager.user[identifier].acc = new Account_prac[1];
 					
-					userManager.user[identifier].acc[0] = new Account_practice();
+					userManager.user[identifier].acc[0] = new Account_prac();
 					userManager.user[identifier].acc[0].number = makeAccount;
 				
 				}
 				else {
-					Account_practice[] temp = userManager.getUser(identifier).acc;
+					Account_prac[] temp = userManager.getUser(identifier).acc;
 					int tempAccCount = userManager.getUser(identifier).accCount;
-					userManager.user[identifier].acc = new Account_practice[tempAccCount+1];
+					userManager.user[identifier].acc = new Account_prac[tempAccCount+1];
 					for (int i = 0; i < tempAccCount; i++) {
 						userManager.user[identifier].acc[i] = temp[i];
 					}
-					userManager.user[identifier].acc[tempAccCount] = new Account_practice();
+					userManager.user[identifier].acc[tempAccCount] = new Account_prac();
 					userManager.user[identifier].acc[tempAccCount].number = makeAccount;
 					
 				}
@@ -129,8 +129,8 @@ public class ATM_practice {
 					else {
 						System.out.println("[메시지] 계좌번호 :'"+ userManager.user[identifier].acc[delIdx].number+"' 삭제 되었습니다.\n");
 						
-						Account_practice[] temp = userManager.user[identifier].acc;
-						userManager.user[identifier].acc = new Account_practice[tempAccCount-1];
+						Account_prac[] temp = userManager.user[identifier].acc;
+						userManager.user[identifier].acc = new Account_prac[tempAccCount-1];
 						
 						
 						for (int i = 0; i < delIdx; i++) {

@@ -2,10 +2,10 @@ package step9_01.atm_v1;
 
 import java.util.Scanner;
 
-public class UserManager_practice {
+public class UserManager_prac {
 	
 	Scanner scan = new Scanner(System.in);
-	User_practice[] user = null;
+	User_prac[] user = null;
 	int userCount = 0;
 	
 	void printAllUser() {
@@ -18,43 +18,58 @@ public class UserManager_practice {
 	
 	void addUser() {
 		
-		if(userCount == 0) {
-			user = new User_practice[1];
-		}
-		else {
-			User_practice[] temp = user;
-			user = new User_practice[userCount + 1];
-			for(int i = 0; i < userCount; i++) {
-				user[i] = temp[i];
-			}
-			temp = null;
-		}
-		
-		
-		System.out.print("[가입] 아이디를 입력하세요 : ");
-		String id = scan.next();
-		
-		boolean isDuple = false;
-		for (int i = 0; i < userCount; i++) {
-			if (user[i].id.equals(id)) {
-				isDuple = true;
-			}
-		}
-		if (!isDuple) {
-			user[userCount] = new User_practice();
+if(userCount == 0) {
+			
+			user = new User_prac[1];
+			
+			System.out.print("[가입] 아이디를 입력하세요 : ");
+			String id = scan.next();
+			
+			user[userCount] = new User_prac();
 			user[userCount].id = id;
 			System.out.println("[메시지] ID : '" + id+ "' 가입 되었습니다.\n");
 			userCount++;
+			
+			
 		}
 		else {
-			System.out.println("[메시지] '"+ id + "'은 이미 가입된 아이디 입니다.\n");
+			
+			System.out.print("[가입] 아이디를 입력하세요 : ");
+			String id = scan.next();
+			
+			boolean isDuple = false;
+			for (int i = 0; i < userCount; i++) {
+				if (user[i].id.equals(id)) {
+					isDuple = true;
+				}
+			}
+			
+			if (!isDuple) {
+				
+				User_prac[] temp = user;
+				user = new User_prac[userCount + 1];
+				for(int i = 0; i < userCount; i++) {
+					user[i] = temp[i];
+				}
+				temp = null;
+				
+				user[userCount] = new User_prac();
+				user[userCount].id = id;
+				System.out.println("[메시지] ID : '" + id+ "' 가입 되었습니다.\n");
+				userCount++;
+				
+			}
+			else {
+				System.out.println("[메시지] '"+ id + "'은 이미 가입된 아이디 입니다.\n");
+			}
+			
 		}
 		
 	}
 	
 	
 	
-	User_practice getUser(int idx) {
+	User_prac getUser(int idx) {
 		
 		return user[idx];
 	}
@@ -99,8 +114,8 @@ public class UserManager_practice {
 		
 		System.out.println("ID : '" +user[identifier].id + "' 가 탈퇴되었습니다.");
 		
-		User_practice[] temp = user;
-		user = new User_practice[userCount - 1];
+		User_prac[] temp = user;
+		user = new User_prac[userCount - 1];
 		
 		for(int i = 0; i < identifier; i++) {
 			user[i] = temp[i];

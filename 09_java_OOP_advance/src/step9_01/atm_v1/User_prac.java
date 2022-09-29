@@ -1,10 +1,10 @@
 package step9_01.atm_v1;
 
-public class User_practice {
+public class User_prac {
 	
 	String id;
 	int accCount;
-	Account_practice[] acc;
+	Account_prac[] acc;
 	
 	void printAccount() {
 		

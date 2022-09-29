@@ -34,6 +34,8 @@ public class UserManager {
 		System.out.println("[가입] 아이디를 입력하세요 : ");
 		String id = sc.next();
 		
+		// 여기 변경 필요함
+		
 		boolean isDuple = false;
 		for (int i = 0; i < userCnt; i++) {
 			if (user[i].id.equals(id)) {

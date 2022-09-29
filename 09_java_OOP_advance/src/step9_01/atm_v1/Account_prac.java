@@ -1,6 +1,6 @@
 package step9_01.atm_v1;
 
-public class Account_practice {
+public class Account_prac {
 	
 	String number = "";
 	int money = 0;
