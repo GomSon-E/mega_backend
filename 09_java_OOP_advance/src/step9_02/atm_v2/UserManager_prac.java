@@ -15,7 +15,7 @@ public class UserManager_prac {
 	Random ran = new Random();
 	
 	final int ACC_MAX_CNT = 3;			// 최대 개설 가능한 계좌 수
-	User_prac[] userList = null;				// 전체 회원정보
+	User_prac[] userList = null;		// 전체 회원정보
 	int userCnt = 0;					// 전체 회원 수
 	
 	void printAllUser() {
