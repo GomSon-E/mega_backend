@@ -1,5 +1,6 @@
 package step9_02.atm_v2_analysis;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -130,12 +131,12 @@ public class UserManager {
 		User[] temp = userList;
 		userList = new User[userCnt - 1];
 		
+		System.out.println(identifier);
+		
+		int j = 0;
 		for (int i = 0; i < userCnt; i++) {
-			if (i < identifier) {
-				userList[i] = temp[i];
-			}
-			else {
-				userList[i + 1] = temp[i];
+			if (i != identifier) {
+				userList[j++] = temp[i];
 			}
 		}
 		

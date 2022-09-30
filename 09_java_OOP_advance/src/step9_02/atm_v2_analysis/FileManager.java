@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+
+import step9_02.atm_v2.Account_prac;
 
 public class FileManager {
 
@@ -40,7 +43,7 @@ public class FileManager {
 				for (int j = 0; j < um.userList[i].accCnt; j++) {
 					data += um.userList[i].acc[j].accNumber;
 					data += "/";
-					data += um.userList[i].acc[i].money;
+					data += um.userList[i].acc[j].money;
 					if (j != um.userList[i].accCnt - 1) {
 						data += ",";
 					}
@@ -107,35 +110,51 @@ public class FileManager {
 					String id = datas[i];
 					String pw = datas[i + 1];
 					int accCnt = Integer.parseInt(datas[i + 2]);
+					
 					um.userList[j].id = id;
 					um.userList[j].pw = pw;
 					um.userList[j].accCnt = accCnt;
 					
-					String accInfo = datas[3];
+					String accInfo = datas[i + 3];
 					if (accCnt == 1) {
+						
 						String[] temp = accInfo.split("/");
+						
 						String acc = temp[0];
 						int money = Integer.parseInt(temp[1]);
+						
+						um.userList[j].acc[0] = new Account();
+						um.userList[j].acc[0].accNumber = acc;
+						um.userList[j].acc[0].money = money;
+						
 					}
 					if (accCnt > 1) {
 						String[] temp = accInfo.split(",");
 						for (int k = 0; k < temp.length; k++) {
+							
 							String[] parse = temp[k].split("/");
-							String acc = parse[0];
+							
+							String accNumber = parse[0];
+							int money = Integer.parseInt(parse[1]);
+							
+							um.userList[j].acc[k] = new Account();
+							um.userList[j].acc[k].accNumber = accNumber;
+							um.userList[j].acc[k].money = money;
+							
 						}
 					}
-					
+					j++;
 				}
-				
 			}
-			
+			else {
+				setData();
+				save();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			if (br != null) { try { br.close(); }  catch (IOException e) {} }
+			if (fr != null) { try { fr.close(); }  catch (IOException e) {} }
 		}
-		
-		
-	}
-	
-	
-	
+	}	
 }
