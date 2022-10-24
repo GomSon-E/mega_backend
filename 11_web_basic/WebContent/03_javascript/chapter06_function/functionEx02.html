@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변수의 생명주기</title>
+<script>
+
+	var data = "전역 변수"
+	
+	function func1() {
+		var func1Data = "함수 1의 지역변수"
+		
+		document.write("data : ", data + "<br>");
+		document.write("func1Data : ", func1Data + "<br>");
+		// document.write("func2Data : ", func2Data + "<br>");	// ERROR
+	}
+	
+	function func2() {
+		var func2Data = "함수 2의 지역변수"
+		
+		document.write("data : ", data + "<br>");
+		// document.write("func1Data : ", func1Data + "<br>"); 	// ERROR
+		document.write("func2Data : ", func2Data + "<br>");
+	}
+	
+	document.write("data : ", data + "<br>");
+	// document.write("func1Data : ", func1Data + "<br>");		// ERROR
+	// document.write("func2Data : ", func2Data + "<br>");		// ERROR
+	
+	func1()
+	func2()
+	
+	var idx1 = 1;
+	
+	function func3() {
+		var idx2 = 1;
+		
+		console.log("idx1 : " + idx1 + " / idx2 : " + idx2)
+		
+		idx1++;
+		idx2++;
+	}
+	
+</script>
+</head>
+<body>
+
+	<input type="button" value="버튼" onclick="func3()">
+
+</body>
+</html>
