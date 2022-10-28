@@ -41,6 +41,35 @@
 			return false
 		}
 		
+		var hobbies = document.f.hobbies
+		var isChecked = false
+		
+		for (var i = 0; i < hobbies.length; i++) {
+			if (hobbies[i].checked) {
+				isChecked = true;
+			}
+		}
+		
+		if (!isChecked) {
+			alert("취미를 체크하세요.")
+			hobbies[0].focus()
+			return false
+		}
+		
+		var travel = document.f.travel
+		if (travel.value == "") {
+			alert("성별을 체크하세요.")
+			travel.focus()
+			return false
+		}
+		
+		var memo = document.f.memo
+		if (memo.value == "") {
+			alert("성별을 체크하세요.")
+			memo.focus()
+			return false
+		}
+		
 	}
 </script>
 </head>
