@@ -1,0 +1,156 @@
+/*
+
+	# 조인(JOIN) 
+    
+		- 조인은 두 개 이상의 테이블을 결합하는 연산이다.
+		- 각 테이블은 각자에 맞는 데이터를 저장하고 있는데, 서로 다른 테이블에서 데이터를 가져오려면 조인 연산을 해야 한다.
+		- 주로 주키(PRIMARY KEY)와 참조키(FOREIGN KEY)를 기준으로 테이블을 결합한다.
+        - 대표적인 조인은 INNER , LEFT(LEFT OUTER), RIGHT(RIGHT OUTER) 조인이 있다.
+		- 주로 테이블명은 별칭을 사용한다.
+        - INNER JOIN은 INNER를 생략한 JOIN으로 사용가능하다.        Ex) INNER JOIN , JOIN
+        - LEFT JOIN은 OUTER를 생략한 LEFT JOIN으로 사용가능하다.    Ex) LEFT OUTER JOIN , LEFT JOIN
+        - RIGHT JOIN은 OUTER를 생략한 RIGHT JOIN으로 사용가능하다.  Ex) RIGHT OUTER JOIN , RIGHT JOIN
+   
+		[형식]
+		
+		SELECT
+				*
+		FROM
+				(TABLE1 ALIAS)
+			INNER(LEFT,RIGHT) JOIN (TABLE2 ALIAS)
+								ON (CONDITION)
+
+*/
+
+
+USE DML_TEST;
+
+CREATE TABLE CLASS (
+	SUBJECT_CD   VARCHAR(30),
+	SUBJECT_NM   VARCHAR(30),
+	LOCATION	 VARCHAR(30)
+);
+
+
+CREATE TABLE STUDENT (
+    STUDENT_CD 	 VARCHAR(10),
+	STUDENT_NM 	 VARCHAR(10),
+	SUBJECT_CD 	 VARCHAR(20)
+);
+
+
+INSERT INTO CLASS VALUES("C1" , "C" , "201호");
+INSERT INTO CLASS VALUES("C2" , "JAVA" , "202호");
+INSERT INTO CLASS VALUES("C3" , "PYTHON" , "301호");
+INSERT INTO CLASS VALUES("C4" , "SPRING" , "302호");
+INSERT INTO CLASS VALUES("C5" , "JSP" , "303호");
+
+
+INSERT INTO STUDENT VALUES("S1" , "학생1" , "C1");
+INSERT INTO STUDENT VALUES("S2" , "학생2" , "C2");
+INSERT INTO STUDENT VALUES("S3" , "학생3" , "C3");
+INSERT INTO STUDENT VALUES("S4" , "학생4" , NULL);
+INSERT INTO STUDENT VALUES("S5" , "학생5" , NULL);
+INSERT INTO STUDENT VALUES("S6" , "학생6" , NULL);
+INSERT INTO STUDENT VALUES("S7" , "학생7" , NULL);
+
+SELECT * FROM CLASS;
+SELECT * FROM STUDENT;
+
+# WHERE절을 이용한 두 테이블의 join (ANSI 조인)
+
+SELECT 
+		*
+FROM 
+		CLASS, 
+        STUDENT
+WHERE
+		CLASS.SUBJECT_CD = STUDENT.SUBJECT_CD;
+
+# 테이블에 AS를 지정하여 사용한다. (보통 테이블의 AS 키워드는 생략한다.)
+
+SELECT
+		*
+FROM 
+		CLASS C, # 알리야스는 보통 생략함
+		STUDENT S
+WHERE
+		C.SUBJECT_CD = S.SUBJECT_CD;
+
+# 테이블명.컬럼명으로 컬럼명을 표시하고 AS 키워드로 컬럼명을 정리하여 준다.
+SELECT
+		C.SUBJECT_CD	AS SUBJECT_CD,
+		C.SUBJECT_NM	AS SUBJECT_NM,
+        C.LOCATION		AS LOCATION,
+        S.STUDENT_CD	AS STUDENT_CD,
+        S.STUDENT_NM	AS STUDENT_NM
+FROM 
+		CLASS C, 
+		STUDENT S
+WHERE
+		C.SUBJECT_CD = S.SUBJECT_CD;        
+
+# INNER JOIN (가장 기본적인 조인) 사용예시    
+
+SELECT
+		*
+FROM 
+		 CLASS C
+	INNER JOIN STUDENT S	# = JOIN STUDENT S
+			ON C.SUBJECT_CD = S.SUBJECT_CD;
+            
+SELECT
+		S.STUDENT_NM AS STUDENT_NM,
+        C.LOCATION 	 AS LOCATION
+FROM
+		CLASS C
+         JOIN STUDENT S
+		   ON C.SUBJECT_CD = S.SUBJECT_CD
+		# AND C.SUBJECT_CD = 'C1';
+WHERE
+		C.SUBJECT_CD = 'C1';
+		   
+# LEFT 조인 사용 예시
+
+SELECT
+		*
+FROM 
+			  CLASS C
+	LEFT OUTER JOIN STUDENT S	# = LEFT JOIN STUDENT S	
+				 ON C.SUBJECT_CD = S.SUBJECT_CD;
+
+# RIGHT 조인 사용 예시
+
+SELECT
+		*
+FROM 
+			   CLASS C
+	RIGHT OUTER JOIN STUDENT S	# = RIGHT JOIN STUDENT S	
+				  ON C.SUBJECT_CD = S.SUBJECT_CD;
+
+# 연습예시 1)
+
+SELECT
+		*
+FROM
+		 CLASS C
+	INNER JOIN STUDENT S
+			ON C.SUBJECT_CD = S.SUBJECT_CD
+		   AND C.LOCATION IN ('201호', '202호')
+ORDER BY
+		C.SUBJECT_NM DESC;
+
+# 연습예시 2)
+
+SELECT 
+		SUBSTRING(C.LOCATION, 1, 1),
+        COUNT(*)
+FROM
+		CLASS C
+		 JOIN STUDENT S
+		   ON C.SUBJECT_CD = S.SUBJECT_CD
+GROUP BY
+		SUBSTRING(C.LOCATION, 1, 1)
+HAVING
+		COUNT(*) >= 2;
+
