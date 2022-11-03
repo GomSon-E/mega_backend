@@ -407,7 +407,7 @@ GROUP BY
 # '사용자'별로 주문금액 총합이 700만원 이상인 회원의 아이디 , 이름 , 주문금액을 조회하기.
 
 SELECT
-		M.MEMBER_ID											AS M.MEMBER_ID,
+		M.MEMBER_ID											AS MEMBER_ID,
 		M.MEMBER_NM											AS MEMBER_NM,
         SUM(P.PRICE * O.ORDER_GOODS_QTY + P.DELIVERY_PRICE) AS TOTAL
 FROM

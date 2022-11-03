@@ -203,7 +203,7 @@ FROM
 			ON DE.DEPT_NO = D.DEPT_NO
 GROUP BY
 		D.DEPT_NAME,
-		T.TITLE
+		T.TITLE;
 
 		
 		
