@@ -4,17 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>main</title>
+<title>Insert title here</title>
 </head>
 <body>
-
 	<fieldset>
-		<legend>회원관리 시스템 1.0</legend>
+		<legend>회원 관리 시스템</legend>
 		<p><a href="01_insert.jsp">회원가입</a></p>
-		<p><a href="07_list.jsp">회원조회</a></p>
+		<p><a href="07_select.jsp">회원조회</a></p>
 		<p><a href="03_delete.jsp">회원삭제</a></p>
-		<p><a href="05_update.jsp">회원수정</a></p>
+		<p><a href="">회원수정</a></p>
 	</fieldset>
-
 </body>
 </html>

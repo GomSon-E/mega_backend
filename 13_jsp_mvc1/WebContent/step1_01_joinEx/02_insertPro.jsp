@@ -95,6 +95,11 @@
 		}
 	
 	%>
+	
+	<script>
+		alert("회원가입 되었습니다.");
+		location.href = "00_main.jsp";	// location.href = "url"; > 해당 url로 페이지를 이동한다.
+	</script>
 
 </body>
 </html>
