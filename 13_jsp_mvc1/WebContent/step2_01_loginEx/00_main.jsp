@@ -18,7 +18,7 @@
 	%>
 		<h1>JUST DO IT</h1>
 		<p><a href="01_insert.jsp">JOIN!</a></p>
-		<p>LOGIN!</p>
+		<p><a href="03_login.jsp">LOGIN!</a></p>
 	<%	
 	
 		}
@@ -26,8 +26,8 @@
 			
 	%>
 		<h1>WELCOME <%=id %>!</h1>
-		<p>LOGOUT!</p>
-		<p>DELETE!</p>
+		<p><a href="05_logout.jsp">LOGOUT!</a></p>
+		<p><a href="06_delete.jsp">DELETE!</a></p>
 		<p>UPDATE!</p>
 	<%
 			

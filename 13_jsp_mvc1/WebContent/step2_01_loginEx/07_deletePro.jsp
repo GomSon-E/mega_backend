@@ -6,39 +6,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>insertPro</title>
+<title>deletePro</title>
 </head>
 <body>
-
-	<%
 	
+	<%
 		request.setCharacterEncoding("utf-8");
 	
 		MemberDto memberDto = new MemberDto();
-		
 		memberDto.setId(request.getParameter("id"));
 		memberDto.setPasswd(request.getParameter("passwd"));
-		memberDto.setName(request.getParameter("name"));
 		
-		boolean isFirstMember = MemberDao.getInstance().insertMember(memberDto);
+		boolean isDelete = MemberDao.getInstance().deleteMember(memberDto);
 		
-		if (isFirstMember) {
+		if (isDelete) {
+			session.invalidate();
 	%>
-		<script>
-			alert("You are now a member.")
-			location.href = "00_main.jsp"
-		</script>
+			<script>
+				alert("Your account has been deleted successfully.");
+				location.href = "00_main.jsp";
+			</script>
+		
 	<%
-		} else {
+		} 
+		else {
 	%>
-		<script>
-			alert("This is a duplicated ID.")
-			history.go(-1);
-		</script>
+			<script>
+				alert("Check your Id or Password");
+				history.go(-1);
+			</script>
+		
 	<%
 		}
-	
 	%>
-
+	
 </body>
 </html>
