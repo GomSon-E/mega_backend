@@ -43,7 +43,7 @@ public class MemberDao {
 		try {
 			getConnection();
 			
-			pstmt = conn.prepareStatement("SELECssT * FROM MEMBER WHERE ID = ?");
+			pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE ID = ?");
 			pstmt.setString(1, memberDto.getId());
 			rs = pstmt.executeQuery();
 			
@@ -121,6 +121,38 @@ public class MemberDao {
 		}		
 		
 		return isDelete;
+		
+	}
+	
+	// Update DAO
+	public boolean updateMember(MemberDto memberDto) {
+		
+		boolean isUpdate = false;
+		
+		try {
+			getConnection();
+			
+			pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE ID = ? AND PASSWD = ?");
+			pstmt.setString(1, memberDto.getId());
+			pstmt.setString(2, memberDto.getPasswd());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {				
+				pstmt = conn.prepareStatement("UPDATE MEMBER SET NAME = ? WHERE ID = ?");
+				pstmt.setString(1, memberDto.getName());
+				pstmt.setString(2, memberDto.getId());
+				pstmt.executeUpdate();
+				
+				isUpdate = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}		
+		
+		return isUpdate;
 		
 	}
 	

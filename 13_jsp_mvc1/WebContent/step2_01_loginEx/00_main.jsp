@@ -28,7 +28,7 @@
 		<h1>WELCOME <%=id %>!</h1>
 		<p><a href="05_logout.jsp">LOGOUT!</a></p>
 		<p><a href="06_delete.jsp">DELETE!</a></p>
-		<p>UPDATE!</p>
+		<p><a href="08_update.jsp">UPDATE!</a></p>
 	<%
 			
 		}
