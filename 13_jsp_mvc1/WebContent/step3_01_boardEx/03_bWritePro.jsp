@@ -31,7 +31,7 @@
 	
 	<script>
 		alert("등록되었습니다.");
-		location.href = "02_bWrite.jsp"
+		location.href = "04_bList.jsp"
 	</script>
 	
 

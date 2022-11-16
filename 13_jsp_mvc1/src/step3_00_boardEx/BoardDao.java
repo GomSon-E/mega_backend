@@ -95,6 +95,10 @@ public class BoardDao {
 		try {
 			getConnection();
 			
+			pstmt = conn.prepareStatement("UPDATE BOARD SET READ_COUNT = READ_COUNT + 1 WHERE NUM = ?");
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();	
+			
 			pstmt = conn.prepareStatement("SELECT * FROM BOARD WHERE NUM = ?");
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
@@ -122,5 +126,74 @@ public class BoardDao {
 		
 	}
 	
+	public boolean updateBoard(BoardDto boardDto) {
+		boolean isUpdate = false;
+		
+		try {
+			if (validMemberCheck(boardDto)) { 
+				getConnection();			
+				
+				pstmt = conn.prepareStatement("UPDATE BOARD SET SUBJECT = ?, CONTENT = ? WHERE NUM = ?");
+				pstmt.setString(1, boardDto.getSubject());
+				pstmt.setString(2, boardDto.getContent());
+				pstmt.setInt(3, boardDto.getNum());
+				pstmt.executeUpdate();
+				
+				isUpdate = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+		
+		return isUpdate;
+	}
+	
+	public boolean validMemberCheck(BoardDto boardDto) {
+		boolean isValidMember = false;
+		
+		try {
+			getConnection();	
+			
+			pstmt = conn.prepareStatement("SELECT * FROM BOARD WHERE NUM = ? AND PASSWORD = ?");
+			pstmt.setInt(1, boardDto.getNum());
+			pstmt.setString(2, boardDto.getPassword());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				isValidMember = true;
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+		
+		
+		return isValidMember;		
+	}
 	 
+	public boolean deleteBoard(BoardDto boardDto) {
+		boolean isDelete = false;
+		
+		try {
+			if (validMemberCheck(boardDto)) { 
+				getConnection();
+				
+				pstmt = conn.prepareStatement("DELETE FROM BOARD WHERE NUM = ?");
+				pstmt.setInt(1, boardDto.getNum());
+				pstmt.executeUpdate();
+				
+				isDelete = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+		
+		return isDelete;		
+	}
+	
 }
