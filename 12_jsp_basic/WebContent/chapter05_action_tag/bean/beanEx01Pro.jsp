@@ -43,5 +43,9 @@
 		productDao.printData(bean3);
 	%>
 
+	<p>bean1 : <%=bean1.getPdNm() %> , X</p>
+	<p>bean1 : <%=bean2.getPdNm() %> , <jsp:getProperty property="pdNm" name="bean2"/></p>
+	<p>bean1 : <%=bean3.getPdNm() %> , <jsp:getProperty property="pdNm" name="bean3"/></p>
+
 </body>
 </html>
