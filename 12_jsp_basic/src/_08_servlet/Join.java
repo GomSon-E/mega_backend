@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/join")  					 // 클라이언트가 jsp페이지가 아닌 해당 url경로로 웹시스템에 request한다.
-public class Join extends HttpServlet {   // Http 통신이 가능한 HttpServlet클래스를 상속받아 구현한다.
+@WebServlet("/join") // 클라이언트가 jsp페이지가 아닌 해당 url경로로 웹시스템에 request한다. (get -> doGet으로 넘어감)
+public class Join extends HttpServlet {	// Http 통신이 가능한 HttpServlet클래스를 상속받아 구현한다.
 	
 	private static final long serialVersionUID = 1L; // Servlet생성시 기본값으로 생성된다. 서블릿의 내부 식별자 역할을 한다.
     
@@ -25,6 +25,8 @@ public class Join extends HttpServlet {   // Http 통신이 가능한 HttpServle
 	
 	// post형식으로 url요청이 들어왔을 때 수행할 메서드
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// MVC1 모델의 joinPro.jsp에서 하던 일을 여기서 처리함 
 		
 		request.setCharacterEncoding("utf-8");
 
