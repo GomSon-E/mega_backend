@@ -9,7 +9,7 @@ public class BoardDto {
 	private String email;
 	private String subject;
 	private String password;
-	private Date redDate;
+	private Date regDate;
 	private int readCount;
 	private String content;
 
@@ -43,11 +43,11 @@ public class BoardDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getRedDate() {
-		return redDate;
+	public Date getRegDate() {
+		return regDate;
 	}
-	public void setRedDate(Date redDate) {
-		this.redDate = redDate;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	public int getReadCount() {
 		return readCount;
