@@ -69,6 +69,6 @@
 	<p><fmt:formatNumber value="${nData }" pattern=".0"/></p>
 	<p><fmt:formatNumber value="${nData }" pattern=".00"/></p>
 	<p><fmt:formatNumber value="${nData }" pattern=".000"/></p>
-	
+  
 </body>
 </html>

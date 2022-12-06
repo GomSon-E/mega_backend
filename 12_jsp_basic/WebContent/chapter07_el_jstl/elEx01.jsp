@@ -75,15 +75,9 @@
 	<hr>
 	
 	<h3>배열형 데이터 타입</h3>
-<<<<<<< HEAD
 	<p>${list1 == null }</p>	// 아예 배열이 없는 경우
 	<p>${empty list2 }</p>		// 배열이 비어있는 경우
 	<p>${not empty list3 }</p>	// 배열이 값을 가지고 있는 경우
-=======
-	<p>${list1 == null }</p>
-	<p>${empty list2 }</p>
-	<p>${not empty list3 }</p>
->>>>>>> branch 'master' of https://github.com/GomSon-E/mega_backend.git
 	
 </body>
 </html>
