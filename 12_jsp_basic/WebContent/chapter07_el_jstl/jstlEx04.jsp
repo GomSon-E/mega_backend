@@ -52,5 +52,23 @@
 		<p>3. ${num2 }(이)가 크다.</p>
 	</c:if>
 	
+	<hr>
+	
+	<h3>날짜 형식</h3>
+	<p>${now }</p>
+	<p><fmt:formatDate value="${now }"/></p>
+	<p><fmt:formatDate value="${now }" pattern="yyyy-MM-dd"/></p>
+	<p><fmt:formatDate value="${now }" pattern="yyyy년 MM월 dd일"/></p>
+	<p><fmt:formatDate value="${now }" pattern="yyyyMMdd"/></p>
+	
+	<hr>
+	
+	<h3>숫자 형식</h3>
+	<p>${nData }</p>
+	<p><fmt:formatNumber value="${nData }"/></p>
+	<p><fmt:formatNumber value="${nData }" pattern=".0"/></p>
+	<p><fmt:formatNumber value="${nData }" pattern=".00"/></p>
+	<p><fmt:formatNumber value="${nData }" pattern=".000"/></p>
+	
 </body>
 </html>
