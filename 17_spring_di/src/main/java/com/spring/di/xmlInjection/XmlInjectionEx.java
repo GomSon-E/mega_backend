@@ -15,7 +15,7 @@ public class XmlInjectionEx {
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	// root-context.xml 파일의 객체를 주입
-	@Autowired
-	private SqlSession sqlSession;
+	// @Autowired
+	// private SqlSession sqlSession;
 	
 }
