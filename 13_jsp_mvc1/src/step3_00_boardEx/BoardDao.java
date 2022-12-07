@@ -73,7 +73,7 @@ public class BoardDao {
 				temp.setEmail(rs.getString("EMAIL"));
 				temp.setSubject(rs.getString("SUBJECT"));
 				temp.setPassword(rs.getString("PASSWORD"));
-				temp.setRedDate(rs.getDate("REG_DATE"));
+				temp.setRegDate(rs.getDate("REG_DATE"));
 				temp.setReadCount(rs.getInt("READ_COUNT"));
 				temp.setContent(rs.getString("CONTENT"));
 				boardList.add(temp);			
@@ -110,7 +110,7 @@ public class BoardDao {
 				boardDto.setEmail(rs.getString("EMAIL"));
 				boardDto.setSubject(rs.getString("SUBJECT"));
 				boardDto.setPassword(rs.getString("PASSWORD"));
-				boardDto.setRedDate(rs.getDate("REG_DATE"));
+				boardDto.setRegDate(rs.getDate("REG_DATE"));
 				boardDto.setReadCount(rs.getInt("READ_COUNT"));
 				boardDto.setContent(rs.getString("CONTENT"));
 				
