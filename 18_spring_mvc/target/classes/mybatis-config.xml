@@ -5,5 +5,31 @@
 
 <!-- 아무것도 하지 않아도 기본적으로 있어야 하는 태그 -->
 <configuration>
+	
+	<!-- camelcase로 매핑하는 설정 -->	
+	<!-- Camel Case, Snake Case로 설계된 경우 Mybatis Mapper에서 resultMap을 사용하지 않아도 자바변수와 컬럼명을 매치해준다. -->
+	<!-- 
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	 -->
+	<!-- Mapper에서 길게 전체 작성해야 하는 경로의 별칭을 지정 -->	
+	<!-- 
+	
+		- 코드의 길이가 길어질 경우 mybatis-config 파일에 <typeAlias>태그로 alias(별명,별칭)을 지정하여 간편하게 사용할 수 있다.
+	
+	    예시)
+		<typeAliases>
+			<typeAlias type="com.spring.dto.MemberDto"  alias="MemberDto" />
+			<typeAlias type="com.spring.dto.ProductDto" alias="ProductDto"/>
+			<typeAlias type="com.spring.dto.MessageDto" alias="MessageDto"/>
+		</typeAliases>
+		
+	 -->
+	<typeAliases>
+		<typeAlias type="com.spring.mvc.dataTransfer.dto.ProductDto" alias="ProductDto"/>
+		<typeAlias type="com.spring.mvc.dataTransfer.dto.MemberDto" alias="MemberDto"/>
+		<typeAlias type="com.spring.mvc.dataTransfer.dto.OrderDto" alias="OrderDto"/>
+	</typeAliases>
 
 </configuration>
