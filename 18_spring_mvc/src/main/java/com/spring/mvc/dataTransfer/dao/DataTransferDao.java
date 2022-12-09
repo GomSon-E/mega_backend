@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.mvc.dataTransfer.dto.MemberDto;
+import com.spring.mvc.dataTransfer.dto.OrderDto;
 import com.spring.mvc.dataTransfer.dto.ProductDto;
 
 @Repository
@@ -72,6 +74,57 @@ public class DataTransferDao {
 		for (Map<String, Object> map : productMoreList) {
 			System.out.println(map);
 		}
+	}
+	
+	
+	/*
+	 * 
+	 * # DAO To Mapper
+	 * 
+	 *  - 2개 이상의 파라미터를 Mapper로 전달할 수 없고 오직 1개의 파라미터만 전송이 가능하다.
+	 *  - 2개 이상의 데이터는 DTO , Map형식으로 전송한다.
+	 *  - 전송되는 복수의 데이터가 DTO의 멤버로 포함되어 있으면 일반적으로 DTO 전송 방식을 사용하고
+	 *    전송되는 복수의 데이터가 DTO의 멤버에 포함되어 있지 않은 경우 Map 전송 방식을 사용한다.
+	 * 
+	 * */
+	
+	// 1) DAO To Mapper 단일 데이터 전송 예시
+	public void getData1(String memberId) {
+		System.out.println("\n getData1 \n");
+		
+		// DAO에서 Mapper로 하나만 보낼 수 있음
+		MemberDto memberDto = sqlSession.selectOne("dataTransfer.getData1", memberId);
+		System.out.println(memberDto);
+	}
+	
+	// 2) DAO To Mapper DTO 전송 예시
+	public void getData2(ProductDto productDto) {
+		System.out.println("\n getData2 \n");
+		
+		List<ProductDto> productList = sqlSession.selectList("dataTransfer.getData2", productDto);
+		for (ProductDto dto : productList) {
+			System.out.println(dto);
+		}
+	}
+	
+	// 3) DAO To Mapper Map 전송 예시
+	public void getData3(Map<String, Object> orderMap) {
+		System.out.println("\n getData3 \n");
+		
+		List<Map<String, Object>> orderList = sqlSession.selectList("dataTransfer.getData3", orderMap);
+		for (Map<String, Object> map : orderList) {
+			System.out.println(map);
+		}
+	}
+	
+	public void getData4(Map<String, String> orderMap) {
+		System.out.println("\n getData4 \n");
+		
+		List<OrderDto> orderList = sqlSession.selectList("dataTransfer.getData4", orderMap);
+		for (OrderDto dto : orderList) {
+			System.out.println(dto);
+		}
+		
 	}
 	
 }

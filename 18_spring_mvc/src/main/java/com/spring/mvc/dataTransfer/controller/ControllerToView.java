@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.mvc.dataTransfer.dto.MemberDto;
 
 @Controller
+@RequestMapping("/dataTransfer")
 public class ControllerToView {
 	
 	/*
@@ -132,13 +133,13 @@ public class ControllerToView {
 	 */
 	
 	@RequestMapping(value="/responseBodyEx" , method=RequestMethod.GET)
-	public @ResponseBody String responseBodyEx() {
+	public @ResponseBody String responseBodyEx(HttpServletRequest request) {
 		
 		//String data = "<h1>data</h1>";
 		
 		String data = "<script>";
 			   data += "alert('success');";
-			   data += "location.href = 'modelEx';";
+			   data += "location.href ='" + request.getContextPath() + "/dataTransfer/modelEx';"; // 절대경로로 바꿈
 			   data += "</script>";
 			   
 		return data;
@@ -201,11 +202,11 @@ public class ControllerToView {
 class RestControllerEx{
 	
 	@RequestMapping(value="/restControllerEx" , method=RequestMethod.GET)
-	public String restControllerEx() {
+	public String restControllerEx(HttpServletRequest request) {
 		
 		String data = "<script>";
 		   	   data += "alert('success');";
-		       data += "location.href = 'modelEx';";
+		       data += "location.href = '"+request.getContextPath()+"/dataTransfer/modelEx';";
 		       data += "</script>";
 		       
 		return data;

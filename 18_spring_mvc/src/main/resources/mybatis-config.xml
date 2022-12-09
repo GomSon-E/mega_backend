@@ -8,11 +8,9 @@
 	
 	<!-- camelcase로 매핑하는 설정 -->	
 	<!-- Camel Case, Snake Case로 설계된 경우 Mybatis Mapper에서 resultMap을 사용하지 않아도 자바변수와 컬럼명을 매치해준다. -->
-	<!-- 
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
-	 -->
 	<!-- Mapper에서 길게 전체 작성해야 하는 경로의 별칭을 지정 -->	
 	<!-- 
 	

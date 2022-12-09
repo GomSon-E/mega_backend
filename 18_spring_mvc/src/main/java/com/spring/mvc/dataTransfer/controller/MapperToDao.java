@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.spring.mvc.dataTransfer.dao.DataTransferDao;
 
 @Controller
+@RequestMapping("/dataTransfer")
 public class MapperToDao {
 	
 	@Autowired

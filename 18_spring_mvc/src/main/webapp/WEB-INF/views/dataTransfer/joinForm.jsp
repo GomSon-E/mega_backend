@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />	
+<c:set var="contextPath" value="${pageContext.request.contextPath}" /> <!-- 모든 경로를 절대 경로를 바꾸기 위한 것 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="transfer4" method="post"> 
+	<form action="${contextPath }/dataTransfer/transfer4" method="post"> 
 		<input type="hidden" name="isPC" value="true">
 		<input type="hidden" name="locationCd" value="1">
 		<input type="hidden" name="lang" value="kor">
@@ -30,8 +30,8 @@
 		</fieldset>	
      </form>
      
-    <p>이미 회원가입이 되어있으면 <a href="transfer5?isMember=false&isSession=false">로그인(param)으로 이동하기</a></p> <!-- GET 방식 -->
-    <p>이미 회원가입이 되어있으면 <a href="transfer6/false/false">로그인(path variable)으로 이동하기</a></p> <!-- 변수명 없이 값만 보내고 컨트롤러에서 변수명을 지정해준다. -->
+    <p>이미 회원가입이 되어있으면 <a href="${contextPath }/dataTransfer/transfer5?isMember=false&isSession=false">로그인(param)으로 이동하기</a></p> <!-- GET 방식 -->
+    <p>이미 회원가입이 되어있으면 <a href="${contextPath }/dataTransfer/transfer6/false/false">로그인(path variable)으로 이동하기</a></p> <!-- 변수명 없이 값만 보내고 컨트롤러에서 변수명을 지정해준다. -->
 
 </body>
 </html>

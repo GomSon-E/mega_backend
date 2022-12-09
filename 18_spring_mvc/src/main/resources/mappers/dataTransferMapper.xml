@@ -40,13 +40,24 @@
 		FROM 
 				T_MEMBER		
 	</select>
+
+<!--  
+
+ 	 <![CDATA[]]> 는 SQL 내부에 연산자가 있을 경우 사용한다. ( '>' '<' 연산자가 태그와 혼동되기 때문 )
+
+ 	- 쿼리 내부에 연산자가 없어도 코드의 통일성을 주기 위해 <![CDATA[]]>를 사용하기도 한다. 
 	
+-->	
 									<!-- 같은 DTO가 또 있을 수 있으므로 전체 경로를 작성해야 하지만 alias를 지정해 간단하게 사용 -->
 	<select id="select2" resultType="ProductDto"> 
-		SELECT
-				*
-		FROM
-				T_PRODUCT
+		<![CDATA[
+			SELECT
+					*
+			FROM
+					T_PRODUCT
+			WHERE
+					PRODUCT_PRICE < 1000000
+		]]>
 	</select>
 	
 <!-- 
@@ -106,13 +117,17 @@
  -->
 	
 	<select id="select3" resultType="ProductDto">
-		SELECT
-				PRODUCT_CODE AS productCode,
-				PRODUCT_NAME AS productName,
-				PRODUCT_PRICE AS productPrice,
-				PRODUCT_DELIVERY_PRICE AS productDeliveryPrice				
-		FROM
-				T_PRODUCT
+		<![CDATA[
+			SELECT
+					PRODUCT_CODE AS productCode,
+					PRODUCT_NAME AS productName,
+					PRODUCT_PRICE AS productPrice,
+					PRODUCT_DELIVERY_PRICE AS productDeliveryPrice				
+			FROM
+					T_PRODUCT
+			WHERE
+					PRODUCT_PRICE < 1000000
+		]]>
 	</select>
 	
 	<resultMap type="ProductDto" id="productInfo"> 
@@ -157,15 +172,60 @@
 		        INNER JOIN T_MEMBER M
 		        ON M.MEMBER_ID = O.MEMBER_ID
 	</select>
-
-<!--  
-
- 	 <![CDATA[]]> 는 SQL 내부에 연산자가 있을 경우 사용한다. ( '>' '<' 연산자가 태그와 혼동되기 때문 )
-
- 	- 쿼리 내부에 연산자가 없어도 코드의 통일성을 주기 위해 <![CDATA[]]>를 사용하기도 한다. 
 	
--->
-
-
+	
+	<!-- 		
+		
+	  	# DAO에서 Mapper로 파라메타 전달 
+	  	
+		- 전달 받은 데이터를 쿼리문에서 ${변수}  , #{변수}과 같은 형태로 사용된다.
+		- 주로 #{값} 형태(preparedStatement)를 사용하며 이 형태를 권장한다.
+		- 대소문자가 구분되므로 오타에 주의한다.
+		- parameterType에 변수의 타입을 정의한다. 하지만 생략 가능 하다.
+		
+	-->
+	
+	<select id="getData1" parameterType="String" resultType="MemberDto">
+		SELECT 
+				*
+		FROM
+				T_MEMBER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- DTO의 변수 -->
+	<select id="getData2" parameterType="ProductDto" resultType="ProductDto">
+		SELECT 
+				*
+		FROM
+				T_PRODUCT
+		WHERE
+				PRODUCT_PRICE >= #{productPrice} 
+				AND PRODUCT_DELIVERY_PRICE = #{productDeliveryPrice}				
+	</select>
+	
+	<!-- MAP의 KEY -->
+	<select id="getData3" parameterType="hashmap" resultType="hashmap">
+		SELECT
+				*
+		FROM
+				T_ORDER O
+				INNER JOIN T_PRODUCT P
+				ON O.DELIVERY_STATE = #{deliveryState}
+				AND P.PRODUCT_DELIVERY_PRICE = #{productDeliveryPrice} 
+	</select>
+	
+	<!-- MAP의 KEY -->
+	<select id="getData4" parameterType="hashmap" resultType="OrderDto">
+		SELECT
+				*
+		FROM
+				T_ORDER
+		WHERE
+				ORDER_DATE BETWEEN #{startDate} AND #{endDate}
+			
+	</select>
+	
 
 </mapper>
