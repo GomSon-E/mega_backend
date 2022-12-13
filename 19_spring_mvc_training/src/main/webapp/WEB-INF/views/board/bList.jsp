@@ -22,7 +22,7 @@
 			<c:forEach var="boardDto" items="${boardList }">
 				<tr>
 					<td>${boardDto.num }</td>
-					<td>${boardDto.subject }</td>
+					<td><a href="${contextPath }/board/boardDetail?num=${boardDto.num }">${boardDto.subject }</a></td>
 					<td>${boardDto.writer }</td>
 					<td><fmt:formatDate value="${boardDto.regDate }" pattern="yyyy-MM-dd" /></td>
 					<td>${boardDto.readCount }</td>

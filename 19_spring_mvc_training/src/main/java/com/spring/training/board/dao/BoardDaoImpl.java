@@ -15,15 +15,38 @@ public class BoardDaoImpl implements BoardDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public void insertBoard(BoardDto boardDto) {
+	public void insertBoard(BoardDto boardDto) throws Exception {
 		sqlSession.insert("board.insertBoard", boardDto);
 		
 	}
 
 	@Override
-	public List<BoardDto> selectListBoard() {
+	public List<BoardDto> selectListBoard() throws Exception {
 		
 		return sqlSession.selectList("board.selectListBoard");
+	}
+
+	@Override
+	public BoardDto selectOneBoard(int num) throws Exception {
+		return sqlSession.selectOne("board.selectOneBoard", num);
+		
+	}
+
+	@Override
+	public void updateReadCount(int num) throws Exception {
+		sqlSession.update("board.updateReadCount", num);
+		
+	}
+
+	@Override
+	public BoardDto selectOneValidateUserCheck(BoardDto boardDto) throws Exception {
+		return sqlSession.selectOne("board.selectOneValidateUserCheck", boardDto); // 낱개로 id와 pw를 따로 두개를 보낼 수 없으므로 boardDto 전체 전송
+	}
+
+	@Override
+	public void updateBoard(BoardDto boardDto) throws Exception {
+		sqlSession.update("board.updateBoard", boardDto);
+		
 	}
 	
 }

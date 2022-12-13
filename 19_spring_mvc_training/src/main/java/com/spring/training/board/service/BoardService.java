@@ -6,7 +6,12 @@ import com.spring.training.board.dto.BoardDto;
 
 public interface BoardService {
 
-	public void addBoard(BoardDto boardDto);
-	public List<BoardDto> getBoardList();
+	public void addBoard(BoardDto boardDto) throws Exception;
+	
+	public List<BoardDto> getBoardList() throws Exception;
+	
+	public BoardDto getBoardDetail(int num) throws Exception;
+	
+	public boolean modifyBoard(BoardDto boardDto) throws Exception;
 	
 }

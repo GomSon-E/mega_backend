@@ -15,14 +15,36 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDao boardDao;
 
 	@Override
-	public void addBoard(BoardDto boardDto) {
+	public void addBoard(BoardDto boardDto) throws Exception {
 		boardDao.insertBoard(boardDto);
 		
 	}
 
 	@Override
-	public List<BoardDto> getBoardList() {
+	public List<BoardDto> getBoardList() throws Exception {
 		return boardDao.selectListBoard();
+	}
+
+	@Override
+	public BoardDto getBoardDetail(int num) throws Exception {
+		// 조회수 올리기
+		boardDao.updateReadCount(num);
+		// 게시글 가져오기
+		return boardDao.selectOneBoard(num);
+	}
+
+	@Override
+	public boolean modifyBoard(BoardDto boardDto) throws Exception {
+		
+		boolean isUpdate = false;
+		
+		if (boardDao.selectOneValidateUserCheck(boardDto) != null) {			
+			boardDao.updateBoard(boardDto);
+			isUpdate = true;
+		}
+		
+		
+		return isUpdate;
 	}
 
 }
