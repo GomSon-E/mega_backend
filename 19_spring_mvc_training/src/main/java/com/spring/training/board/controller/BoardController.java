@@ -18,75 +18,125 @@ import com.spring.training.board.service.BoardService;
 @RequestMapping("/board")
 public class BoardController {
 
-	// 서비스 연결하기
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping(value="/boardWrite", method=RequestMethod.GET)
-	public ModelAndView boardwrite() throws Exception {
+	
+	@RequestMapping(value="/boardWrite" , method=RequestMethod.GET)
+	public ModelAndView boardWrite() throws Exception {
 		return new ModelAndView("board/bWrite");
 	}
 	
-	// boardWrite 입력값 받아서 처리하기
-	@RequestMapping(value="/boardWrite", method=RequestMethod.POST)
-	public @ResponseBody String boardWrite(@ModelAttribute BoardDto boardDto, HttpServletRequest request) throws Exception {
+	
+	@RequestMapping(value="/boardWrite" , method=RequestMethod.POST)
+	public @ResponseBody String boardWrite(@ModelAttribute BoardDto boardDto , HttpServletRequest request) throws Exception {
 		
 		boardService.addBoard(boardDto);
 		
 		String jsScript = "<script>";
-			   jsScript += "alert('Post Added');";
-			   jsScript += "location.href='" + request.getContextPath() + "/board/boardList';";
+			   jsScript += "alert('Post Added.');";
+			   jsScript += "location.href = '" + request.getContextPath() + "/board/boardList';";
 			   jsScript += "</script>";
+		
 		return jsScript;
+		
 	}
 	
-	@RequestMapping(value="/boardList", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/boardList" , method=RequestMethod.GET)
 	public ModelAndView boardList() throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/bList");
-		mv.addObject("boardList", boardService.getBoardList()); // 디비에서 가져온 데이터를 bList로 보냄 
+		mv.addObject("boardList", boardService.getBoardList());
+		
 		return mv;
+	
 	}
 	
-	@RequestMapping(value="/boardDetail", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/boardDetail" , method=RequestMethod.GET)
 	public ModelAndView boardDetail(@RequestParam("num") int num) throws Exception {
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/bDetail");
 		mv.addObject("boardDto", boardService.getBoardDetail(num));
 		
 		return mv;
+		
 	}
 	
-	// 게시글 수정화면으로 넘어가기
-	@RequestMapping(value="/boardUpdate", method=RequestMethod.GET)
+	
+	@RequestMapping(value="/boardUpdate" , method=RequestMethod.GET)
 	public ModelAndView boardUpdate(@RequestParam("num") int num) throws Exception {
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/bUpdate");
 		mv.addObject("boardDto", boardService.getBoardDetail(num));
 		
 		return mv;
+		
 	}
 	
-	@RequestMapping(value="/boardUpdate", method=RequestMethod.POST)
-	public @ResponseBody String boardUpdate(@ModelAttribute BoardDto boardDto, HttpServletRequest request) throws Exception {
-		String jsScript = "";
+	
+	@RequestMapping(value="/boardUpdate" , method=RequestMethod.POST)
+	public @ResponseBody String boardUpdate(@ModelAttribute BoardDto boardDto , HttpServletRequest request) throws Exception {
 		
-		// 비밀번호가 맞으면 수정
+		String jsScript = "";
 		if (boardService.modifyBoard(boardDto)) {
 			jsScript = "<script>";
 			jsScript += "alert('It is changed');";
-			jsScript += "location.href='"+request.getContextPath()+"/board/boardList';";
+			jsScript += "location.href='" + request.getContextPath() + "/board/boardList';";
 			jsScript += "</script>";
 		}
 		else {
 			jsScript = "<script>";
 			jsScript += "alert('Check your Id or Password');";
-			jsScript += "history.go(-1);";
+			jsScript += "history.go(-1)";
 			jsScript += "</script>";
 		}
 		
 		return jsScript;
+		
 	}
-
+	
+	
+	@RequestMapping(value="/boardDelete" , method=RequestMethod.GET)
+	public ModelAndView boardDelete(@RequestParam("num") int num) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/bDelete");
+		mv.addObject("boardDto", boardService.getBoardDetail(num));
+		
+		return mv;
+		
+	}
+	
+	
+	@RequestMapping(value="/boardDelete" , method=RequestMethod.POST)
+	public @ResponseBody String boardDelete(@ModelAttribute BoardDto boardDto, HttpServletRequest request) throws Exception {
+		
+		String jsScript = "";
+		if (boardService.removeBoard(boardDto)) {
+			jsScript = "<script>";
+			jsScript += "alert('It has been deleted');";
+			jsScript += "location.href='" + request.getContextPath() + "/board/boardList';";
+			jsScript += "</script>";
+		}
+		else {
+			jsScript = "<script>";
+			jsScript += "alert('Check your Id or Password');";
+			jsScript += "history.go(-1)";
+			jsScript += "</script>";
+		}
+		
+		return jsScript;
+		
+	}
+	
+	
+	
+	
+	
+	
 }

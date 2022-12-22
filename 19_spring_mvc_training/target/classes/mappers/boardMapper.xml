@@ -3,71 +3,90 @@
 
 <mapper namespace="board">
 
-	<!-- * 유의 : 1. 변수명을 적지 않는다  2. jstl처럼 $를 사용하지 않는다  3. 대소문자를 가린다 -->
-	<insert id="insertBoard" parameterType="BoardDto"> <!-- insert는 result 타입이 없음 -->
+	<insert id="insertBoard" parameterType="BoardDto">
+		
 		INSERT INTO T_SPRING_BOARD (
-			WRITER,
-			EMAIL,
-			SUBJECT,
-			PASSWORD,
-			REG_DATE,
-			READ_COUNT,
-			CONTENT
+				WRITER,
+				EMAIL,
+				SUBJECT,
+				PASSWORD,
+				REG_DATE,
+				READ_COUNT,
+				CONTENT
 		)
 		VALUES (
-			#{writer},
-			#{email},
-			#{subject},
-			#{password},
-			NOW(),
-			0,
-			#{content}
+				#{writer},
+				#{email},
+				#{subject},
+				#{password},
+				NOW(),
+				0,
+				#{content}
 		)
+		
 	</insert>
-	
+
 	<select id="selectListBoard" resultType="BoardDto">
-		SELECT
+		
+		SELECT 
 				*
 		FROM
 				T_SPRING_BOARD
-	</select>
 	
+	</select>
+
 	<select id="selectOneBoard" parameterType="int" resultType="BoardDto">
+		
 		SELECT
 				*
 		FROM
 				T_SPRING_BOARD
 		WHERE
 				NUM = #{num}
-	</select>
 	
+	</select>
+
 	<update id="updateReadCount" parameterType="int">
+		
 		UPDATE
 				T_SPRING_BOARD
-		SET 
+		SET
 				READ_COUNT = READ_COUNT + 1
-		WHERE 
+		WHERE
 				NUM = #{num}
+				
 	</update>
 	
+	
 	<select id="selectOneValidateUserCheck" parameterType="BoardDto" resultType="BoardDto">
+		
 		SELECT
 				*
-		FROM 
+		FROM
 				T_SPRING_BOARD
-		WHERE 
-				NUM = #{num}
-				AND PASSWORD = #{password}
+		WHERE
+				NUM = #{num} AND PASSWORD = #{password}
+	
 	</select>
 	
 	<update id="updateBoard" parameterType="BoardDto">
+	
 		UPDATE
 				T_SPRING_BOARD
-		SET 
+		SET
 				SUBJECT = #{subject},
 				CONTENT = #{content}
 		WHERE
 				NUM = #{num}
+				
 	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM 
+				T_SPRING_BOARD
+		WHERE
+				NUM = #{num}
+	</delete>
 
 </mapper>
+

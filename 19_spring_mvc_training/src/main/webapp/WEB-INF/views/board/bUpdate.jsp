@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div align="center" style="padding-top: 100px">
-		<form action="${contextPath}/board/boardUpdate" method="post"> <!-- 메소드 이름이 게시글 수정화면으로 넘어갈 때와 같지만 method가 다르기 때문에 괜찮음 -->
+		<form action="${contextPath }/board/boardUpdate" method="post">
 			<div align="center">
 				<h1>게시글 수정</h1>
 				<br>
