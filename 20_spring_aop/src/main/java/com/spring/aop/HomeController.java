@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	
-	// private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
 	@Autowired
 	private Boss boss;
 	
@@ -42,6 +40,8 @@ public class HomeController {
 		boss.getInfo("사장", 1200);
 		manager.getInfo("매니저", 700);
 		employee.getInfo("직원", 300);
+		
+//		employee.getError();
 		
 		return "home";
 	}

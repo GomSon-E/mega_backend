@@ -6,9 +6,11 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 
@@ -44,6 +46,7 @@ import org.springframework.stereotype.Component;
 
 # execution 명시자 
 
+			  public   void   			  앞의 모든 건 생략가능하나 메서드 이름은 생략 불가
    - execution(수식어패턴 리턴타입패턴 클래스이름패턴?메서드이름패턴(파라미터패턴)) 
    - 각 패턴은 *을 이용하여 모든값을 표현할 수 있다.
 
@@ -116,18 +119,23 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect // AOP 사용 클래스로 Spring Bean으로 등록한다.
 public class Advice {
+	/*				// execution 뒤 띄어쓰기 금지
+	@Pointcut("execution(void com.spring.aop.*.work())") // 중복되는 execution 명시자를 기술
+	public void work() {
+		// 특정 의미가 없다.
+	}
 	
-	@Before("execution(void com.spring.aop.*.work())") // execution 뒤 띄어쓰기 금지
+	@Before("work()") 
 	public void beforeWork() { // 이 함수 이름은 쓸모가 없다.
 		System.out.println("(before)출근한다.");
 	}
 
-	@After("execution(* work())") // 리턴타입이 아무거나인 work 메서드
+	@After("work()") // 리턴타입이 아무거나인 work 메서드
 	public void afterWork() {
 		System.out.println("(after)퇴근한다.\n");
 	}
 	
-	@Around("execution(void com.spring.aop.*.getWorkingTime())")
+	@Around("work()")
 	public void aroundGetWorkingTime(ProceedingJoinPoint pjp) {
 		
 		// 메서드 호출 전
@@ -159,4 +167,10 @@ public class Advice {
 		System.out.println("\n");
 	}
 	
+	// 호출된 메서드에서 예외 발생 후
+	@AfterThrowing("execution(public void com.spring.aop.Employee.getError())")
+	public void afterThrowing() {
+		System.out.println("(afterThrowing)");
+	}
+	*/
 }

@@ -19,4 +19,9 @@ public class Employee {
 	
 	public void getInfo(String title, int price) {}
 	
+	
+	public void getError() {
+		System.out.println(2/0);
+	}
+	
 }
